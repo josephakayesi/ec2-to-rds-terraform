@@ -1,0 +1,44 @@
+version: "3"
+
+tasks:
+  init:
+    desc: intialize terraform project
+    silent: true
+    cmds:
+      - echo "initializing infrastructure..."
+      - terraform init
+
+  format:
+    desc: format terraform project
+    silent: true
+    cmds:
+      - echo "formatting terraform files..."
+      - terraform init
+
+  plan:
+    desc: run terraform plan
+    silent: true
+    cmds:
+      - echo "planning infrastructure..."
+      - terraform plan
+
+  apply:
+    desc: provision infrastructure
+    silent: true
+    cmds:
+      - echo "provisioning infrastructure..."
+      - terraform apply -auto-approve
+
+  destroy:
+    desc: destroy infrastructure
+    silent: true
+    cmds:
+      - echo "destroying infrastructure..."
+      - terraform destroy -auto-approve
+
+  output:
+    desc: show infrastructure output
+    silent: true
+    cmds:
+      - echo "showing infrastructure outputs"
+      - terraform output
