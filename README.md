@@ -6,7 +6,7 @@ This guide walks you through setting up and provisioning an Amazon RDS instance 
 
 ### Infrastructure diagram
 
-<p align="center" ><img src="https://res.cloudinary.com/tutcan/image/upload/v1726243573/general/ec2-to-rds-infrastructure-diagram.webp" width="100%" height="100%" alt="AWS Infrastructure Diagram by Joseph Akayesi"></p>
+<p align="center" ><img src="https://res.cloudinary.com/tutcan/image/upload/v1726260089/general/ec2-to-rds-infrastructure-diagram.webp" width="100%" height="100%" alt="AWS Infrastructure Diagram by Joseph Akayesi"></p>
 
 ### Prerequisites
 
