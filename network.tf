@@ -16,7 +16,7 @@ resource "aws_subnet" "public_subnet" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "secrets_public_subnet"
+    Name = "public_subnet"
   }
 }
 
@@ -37,13 +37,21 @@ resource "aws_subnet" "private_subnet" {
 resource "aws_route_table" "public_rtb" {
   vpc_id = aws_vpc.vpc.id
 
-    route {
-        cidr_block = "0.0.0.0/0"
-        gateway_id = aws_internet_gateway.igw.id
-    }
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw.id
+  }
 
   tags = {
     Name = "public_route_table"
+  }
+}
+
+resource "aws_route_table" "private_rtb" {
+  vpc_id = aws_vpc.vpc.id
+
+  tags = {
+    Name = "private_route_table"
   }
 }
 
@@ -51,6 +59,12 @@ resource "aws_route_table" "public_rtb" {
 resource "aws_route_table_association" "public_subnet_association" {
   subnet_id      = aws_subnet.public_subnet.id
   route_table_id = aws_route_table.public_rtb.id
+}
+
+resource "aws_route_table_association" "private_subnet_association" {
+  count          = length(aws_subnet.private_subnet)
+  subnet_id      = aws_subnet.private_subnet[count.index].id
+  route_table_id = aws_route_table.private_rtb.id
 }
 
 # EC2 Security Group
@@ -81,16 +95,16 @@ resource "aws_security_group" "db_sg" {
   depends_on = [aws_security_group.ec2_sg]
 
   ingress {
-    from_port   = 3306
-    to_port     = 3306
-    protocol    = "tcp"
+    from_port       = 3306
+    to_port         = 3306
+    protocol        = "tcp"
     security_groups = [aws_security_group.ec2_sg.id]
   }
 
-   egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+  #  egress {
+  #   from_port   = 0
+  #   to_port     = 0
+  #   protocol    = "-1"
+  #   cidr_blocks = ["0.0.0.0/0"]
+  # }
 }

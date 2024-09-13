@@ -37,4 +37,7 @@ override.tf.json
 .terraformrc
 terraform.rc
 
+# Ignore sensitive keys
+keys/
+
 # End of https://www.toptal.com/developers/g

@@ -1,8 +1,13 @@
-<p align="center" ><img src="https://res.cloudinary.com/tutcan/image/upload/v1726172456/general/ec2-to-rds-cover-art.png" width="100%" height="100%" alt="Design by Joseph Akayesi. Photo by Katarzyna Pe"></p>
+<p align="center" ><img src="https://res.cloudinary.com/tutcan/image/upload/v1726172456/general/ec2-to-rds-cover-art.png" width="100%" height="100%" alt="Design by Joseph Akayesi. Photo by Iker Urteaga"></p>
 
 ### Introduction
 
 This guide walks you through setting up and provisioning an Amazon RDS instance in a private subnet and an EC2 instance in a public subnet using Terraform. Both resources will be created within the same VPC, with the appropriate security configurations to allow secure communication between the EC2 instance and the RDS database.
+
+### Infrastructure diagram
+
+<p align="center" ><img src="https://res.cloudinary.com/tutcan/image/upload/v1726243573/general/ec2-to-rds-infrastructure-diagram.webp
+" width="100%" height="100%" alt="AWS Infrastructure Diagram by Joseph Akayesi"></p>
 
 ### Prerequisites
 

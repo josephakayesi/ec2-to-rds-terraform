@@ -1,3 +1,8 @@
+resource "aws_key_pair" "key" {
+  key_name   = "key"
+  public_key = file("${path.module}/keys/key.pub")
+}
+
 # IAM Role for EC2 Instance
 resource "aws_iam_role" "ec2_role" {
   name = "ec2_role"
@@ -25,11 +30,12 @@ resource "aws_iam_instance_profile" "ec2_instance_profile" {
 
 # EC2 Instance
 resource "aws_instance" "ec2" {
-  ami           = "ami-0a5c3558529277641"
-  instance_type = "t2.micro"
-  subnet_id = aws_subnet.public_subnet.id
+  ami                    = "ami-0a5c3558529277641"
+  instance_type          = "t2.micro"
+  key_name               = aws_key_pair.key.key_name
+  subnet_id              = aws_subnet.public_subnet.id
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
-  iam_instance_profile = aws_iam_instance_profile.ec2_instance_profile.name
+  iam_instance_profile   = aws_iam_instance_profile.ec2_instance_profile.name
 
   user_data = <<-EOF
     #!/bin/bash

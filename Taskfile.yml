@@ -13,7 +13,7 @@ tasks:
     silent: true
     cmds:
       - echo "formatting terraform files..."
-      - terraform init
+      - terraform fmt
 
   plan:
     desc: run terraform plan
