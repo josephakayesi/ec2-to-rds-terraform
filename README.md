@@ -6,7 +6,7 @@ This guide walks you through setting up and provisioning an Amazon RDS instance 
 
 ### Infrastructure diagram
 
-<p align="center" ><img src="https://res.cloudinary.com/tutcan/image/upload/v1726260089/general/ec2-to-rds-infrastructure-diagram.webp" width="100%" height="100%" alt="AWS Infrastructure Diagram by Joseph Akayesi"></p>
+<p align="center" ><img src="https://res.cloudinary.com/tutcan/image/upload/v1726311241/general/ec2-to-rds-infrastructure-diagram.webp" width="100%" height="100%" alt="AWS Infrastructure Diagram by Joseph Akayesi"></p>
 
 ### Prerequisites
 
@@ -26,7 +26,23 @@ git clone <repository_url>
 cd <repository_directory>
 ```
 
-#### 2. Initialize the Terraform Project
+#### 2. Generate SSH Keys in the `keys` Folder
+
+To securely access the EC2 instance, you need to generate an SSH key pair directly in the `keys` folder. 
+
+
+Run the following command to generate the SSH key pair directly in the `keys` folder:
+
+```bash
+ssh-keygen -t rsa -b 4096 -f ./keys/key
+```
+
+This will create two files in the keys folder  
+
+- `key` (private key)
+- `key.pub` (public key)
+
+#### 3. Initialize the Terraform Project
 
 Before using Terraform, you need to initialize your working directory, which will download the necessary provider plugins (e.g., AWS).
 
@@ -36,7 +52,7 @@ terraform init
 
 This command will output messages indicating that the initialization was successful and that the necessary plugins were downloaded.
 
-#### 3. Review the Terraform Plan
+#### 4. Review the Terraform Plan
 
 It's always a good practice to review what changes Terraform will make to your AWS infrastructure before applying them. Use the following command to create an execution plan:
 
@@ -46,7 +62,7 @@ terraform plan
 
 This command will show you all the resources that Terraform will create, modify, or destroy. Review this output carefully to ensure everything looks correct.
 
-#### 4. Apply the Terraform Configuration
+#### 5. Apply the Terraform Configuration
 
 To apply the configuration and provision the resources, use the following command:
 
@@ -56,11 +72,11 @@ terraform apply
 
 Terraform will again display the execution plan and ask for confirmation to proceed. Type `yes` and press `Enter` to continue.
 
-#### 5. Wait for the Provisioning to Complete
+#### 6. Wait for the Provisioning to Complete
 
 Terraform will take a few minutes to create all the resources. Once the process is complete, you will see a message indicating that the resources have been successfully created.
 
-#### 6. Verify the Infrastructure
+#### 7. Verify the Infrastructure
 
 You can verify that the infrastructure has been created by logging into the AWS Management Console and checking the following:
 
